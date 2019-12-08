@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, } from '@angular/forms';
 import {SignupRequest, SignupResponse} from './signup';
 import { SignupService } from './signupService.service';
 import {HeaderService} from '../header/headerService.service';
+import {AuthenticateService} from '../auth/authenticate.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -18,15 +19,16 @@ export class SignupComponent implements OnInit {
   errorMessage = undefined;
   register: SignupRequest = null;
   signupGrp = new FormGroup({
-    firstname: new FormControl(''),
-    lastname: new FormControl(''),
-    phoneNumber: new FormControl(''),
-    emailAddress: new FormControl(''),
+    firstname: new FormControl('', Validators.required),
+    lastname: new FormControl('', Validators.required),
+    phoneNumber: new FormControl('', Validators.required),
+    emailAddress: new FormControl('', Validators.required),
     username: new FormControl('', [Validators.required, Validators.minLength(3)]),
     password: new FormControl('', Validators.required),
     cf_password: new FormControl('', Validators.required)
   });
-  constructor(private signService: SignupService,private router: Router, private headerService: HeaderService) {
+  constructor(private signService: SignupService,private router: Router, private headerService: HeaderService,
+    public authService: AuthenticateService,) {
     this.headerService.setCurrentPage(this.pageName);
    }
 
@@ -36,6 +38,7 @@ export class SignupComponent implements OnInit {
   onSubmit(signup): void{
     this.register = new SignupRequest(signup);
     this.register.requestType = 'register';
+    console.log(signup)
     const t = this.signService.register(this.register).subscribe(
       response => this.processResponse(response),
       error => console.log(error),

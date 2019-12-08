@@ -1,6 +1,12 @@
 <div class="container">
-    <div class="col-md-8 order-md-1">
-        <h4 class="mb-3">Signup for Platform</h4>
+  
+    <h4 class="mb-3">Signup for Platform</h4>
+    <div class="row">
+      <div class="col-md-5">
+        Testing
+      </div>
+
+    <div class="col-md-7 p-2 order-md-1">
         <div id="error-alert" class="alert" *ngIf="signupError">{{errorMessage}}</div>
         <form class="needs-validation" novalidate="" [formGroup] = "signupGrp" (ngSubmit)="onSubmit(this.signupGrp.value)">
           <div class="row">
@@ -27,8 +33,6 @@
                     Please enter a valid email address for shipping updates.
                   </div>
                 </div>
-          </div>
-          <div class="row">
               <div class="col-md-6 mb-3">
                   <label for="phoneNumber">Phone Number</label>
                   <input type="text" formControlName="phoneNumber" class="form-control" id="phoneNumber" placeholder="374-999-9999" required>
@@ -59,6 +63,9 @@
                   Valid first name is required.
                 </div>
               </div>
+
+            </div>
+            <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="cf-password">Confirm Password</label>
                 <input type="password" class="form-control" formControlName="cf_password" id="cf-password" placeholder="" value="" required>
@@ -68,8 +75,9 @@
               </div>
             </div>
           <hr class="mb-4">
-          <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
-          <button type="button"class="btn btn-md btn-secondary " (click)="onReset()">Reset</button>
+          <button class="btn btn-primary mr-2" type="submit">Register</button>
+          <button type="button"class="ml-2 btn btn-md btn-secondary " (click)="onReset()">Reset</button>
         </form>
       </div>
+    </div>
 </div>

@@ -20,10 +20,10 @@ export class AuthGuardService implements CanActivate{
         this.active.next(status);
       },
       (error) => {
-        console.log(error);
+        
       },
       () => {
-        console.log('complete');
+        //console.log('complete');
       }
     );
     test.add(() => console.log(this.active.value));

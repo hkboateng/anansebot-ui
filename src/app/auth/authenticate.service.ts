@@ -54,6 +54,7 @@ export class AuthenticateService {
 
   public authenticate(request: LoginRequest): Observable<LoginResponse> {
     const loginRes = new LoginResponse();
+    loginRes.setstatus(false)
     this.auth(request).subscribe(
       response => {
         if(response.status){
@@ -70,7 +71,10 @@ export class AuthenticateService {
         this.loginResponse.next(loginRes);
       }
     );
-
+    if(!loginRes.status){
+      loginRes.hasError = true
+      loginRes.responseMessage = "Error occured processing Login. Try again later";
+    }
     return of(loginRes);
   }
 }

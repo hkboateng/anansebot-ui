@@ -39,14 +39,16 @@ export class LoginComponent implements OnInit {
       response => {
         this.loginResponse = response;
         this.isSuccess = response.status;
-        this.navigateAfterLogin();
+        if(this.loginResponse.status){
+          this.navigateAfterLogin();
+        }
+        
       }
     );
   }
 
   navigateAfterLogin(){
     const loggedin = this.authService.getAuthentication();
-    console.log(loggedin)
     if(this.loginResponse.status){
       this.router.navigate(['signup']);
     }

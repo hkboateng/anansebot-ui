@@ -33,6 +33,11 @@ export class LoginResponse {
   responseCode: number;
   token: string;
   hasError: boolean;
+
+  public setstatus(v : boolean) {
+    this.status = v;
+  }
+  
 }
 export class LoginRequest {
   username: string;
