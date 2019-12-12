@@ -13,16 +13,17 @@ import {Router} from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
+
   @Output() redirect: EventEmitter<string> = new EventEmitter();
   pageName = 'Sign Up';
   signupError = false;
   errorMessage = undefined;
   register: SignupRequest = null;
   signupGrp = new FormGroup({
-    firstname: new FormControl('', Validators.required),
-    lastname: new FormControl('', Validators.required),
+    firstname: new FormControl(null, Validators.required),
+    lastname: new FormControl(null, Validators.required),
     phoneNumber: new FormControl('', Validators.required),
-    emailAddress: new FormControl('', Validators.required),
+    emailAddress: new FormControl('', [Validators.required, Validators.email]),
     username: new FormControl('', [Validators.required, Validators.minLength(3)]),
     password: new FormControl('', Validators.required),
     cf_password: new FormControl('', Validators.required)
@@ -36,26 +37,50 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit(signup): void{
-    this.register = new SignupRequest(signup);
-    this.register.requestType = 'register';
-    console.log(signup)
-    const t = this.signService.register(this.register).subscribe(
-      response => this.processResponse(response),
-      error => console.log(error),
-      () => console.log('test')
-    );
-  }
+    if(this.signupGrp.valid){
+      this.register = new SignupRequest(signup);
+      this.register.requestType = 'register';
+      console.log(this.signupGrp.valid)
+      const t = this.signService.register(this.register).subscribe(
+        response => this.processResponse(response),
+        error => console.log(error),
+        () => console.log('test')
+      );
+    }else{
+      this.signupError = true;
+      this.errorMessage = "There are errors on the form."
+      this.validateAllFormFields(this.signupGrp);
+    }
 
+  }
+  isFieldValid(field: string) {
+    return !this.signupGrp.get(field).valid && this.signupGrp.get(field).touched;
+  }
   processResponse(response: SignupResponse) {
     if (response.status) {
       this.router.navigateByUrl('/login');
     } else {
-      console.log(response.responseMessage);
       this.signupError = true;
       this.errorMessage = response.responseMessage;
       return;
     }
   }
+  displayFieldCss(field: string) {
+    return {
+      'has-error': this.isFieldValid(field),
+      'has-feedback': this.isFieldValid(field)
+    };
+  }
+  validateAllFormFields(formGroup: FormGroup) {         //{1}
+  Object.keys(formGroup.controls).forEach(field => {  //{2}
+    const control = formGroup.get(field);  
+    if (control instanceof FormControl) {             //{4}
+      control.markAsTouched({ onlySelf: true });
+    } else if (control instanceof FormGroup) {        //{5}
+      this.validateAllFormFields(control);            //{6}
+    }
+  });
+}
   onReset() {
     this.signupGrp.reset();
   }
