@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { IndexComponent } from './index/index.component';
 import { ContactComponent } from './contact/contact.component';
+import { DisplayFieldMessagesComponent } from './display-field-messages/display-field-messages.component';
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
@@ -25,7 +26,8 @@ export function tokenGetter() {
     SignupComponent,
     HeaderComponent,
     IndexComponent,
-    ContactComponent
+    ContactComponent,
+    DisplayFieldMessagesComponent
   ],
   imports: [
     BrowserModule,
