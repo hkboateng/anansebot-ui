@@ -10,7 +10,7 @@ import {AuthenticateService} from './authenticate.service';
 })
 export class AuthComponent implements OnInit {
 
-  constructor(private router: Router, public authService: AuthenticateService) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -24,9 +24,9 @@ export class AuthComponent implements OnInit {
   }
 
   isAuthenticated(): boolean {
-    const isAuth = this.authService.authenticated;
-    console.log(isAuth)
-    return isAuth;
+    //const isAuth = this.authService.authenticated;
+    //console.log(isAuth)
+    return false;
   }
 
 }

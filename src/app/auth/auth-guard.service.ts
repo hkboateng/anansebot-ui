@@ -14,20 +14,7 @@ export class AuthGuardService implements CanActivate{
    active = new BehaviorSubject<boolean>(null);
    isUpdated = false;
   canActivate(){
-    const test = this.authService.isAuthenticated().subscribe(
-      (status) => {
-        this.isUpdated = true,
-        this.active.next(status);
-      },
-      (error) => {
-        
-      },
-      () => {
-        //console.log('complete');
-      }
-    );
-    test.add(() => console.log(this.active.value));
-    return this.active.value;
+    return null;
   }
 
   callBack(auth: boolean){
