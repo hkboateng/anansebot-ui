@@ -8,10 +8,10 @@ import { map } from 'rxjs/operators';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent/*  implements OnInit  */{
 
-  constructor(public authService: AuthenticateService, public headerService: HeaderService) {
-    this.isAuthenticated();
+  constructor(/*public authService: AuthenticateService, public headerService: HeaderService*/) {
+/*     this.isAuthenticated();
     this.headerService.getCurrentPage().subscribe(
       pageTitle => this.currentPage = pageTitle
     );
@@ -26,6 +26,6 @@ export class HeaderComponent implements OnInit {
     this.authService.isAuthenticated().subscribe(
       status => this.isAuth = status
     );
-    return this.isAuthenticate;
-  }
+    return this.isAuthenticate;*/
+  } 
 }

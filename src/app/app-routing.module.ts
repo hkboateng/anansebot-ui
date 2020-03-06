@@ -5,14 +5,12 @@ import {LoginComponent} from '../app/login/login.component';
 import {SignupComponent} from '../app/signup/signup.component';
 import {ContactComponent} from '../app/contact/contact.component';
 import {IndexComponent} from '../app/index/index.component';
-import {AuthGuardService as AuthGaurd} from '../app/auth/auth-guard.service';
-
+import {ChatbotComponent} from '../app/chatbot/chatbot.component';
 const routes: Routes = [
   {path: 'signup', component: SignupComponent},
   {path: 'index', component: IndexComponent},
-  {path: 'dashboard', component: DashboardComponent,
-    canActivate: [AuthGaurd]
-  },
+  {path: 'dashboard', component: DashboardComponent},
+  {path:'chatdemo', component: ChatbotComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'login', component: LoginComponent},
   { path: '', redirectTo: '/index', pathMatch: 'full' },

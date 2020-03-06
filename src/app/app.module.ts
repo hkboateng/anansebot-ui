@@ -14,6 +14,9 @@ import { HeaderComponent } from './header/header.component';
 import { IndexComponent } from './index/index.component';
 import { ContactComponent } from './contact/contact.component';
 import { DisplayFieldMessagesComponent } from './display-field-messages/display-field-messages.component';
+import { ChatbotComponent } from './chatbot/chatbot.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChatbotRasaModule } from 'angular-chat-widget-rasa';
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
@@ -27,9 +30,12 @@ export function tokenGetter() {
     HeaderComponent,
     IndexComponent,
     ContactComponent,
-    DisplayFieldMessagesComponent
+    DisplayFieldMessagesComponent,
+    ChatbotComponent,
+    
   ],
   imports: [
+    ChatbotRasaModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -41,7 +47,8 @@ export function tokenGetter() {
         whitelistedDomains: ['example.com'],
         blacklistedRoutes: ['example.com/examplebadroute/']
       }
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
