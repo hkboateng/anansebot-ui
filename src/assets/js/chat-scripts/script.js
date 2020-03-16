@@ -1,14 +1,14 @@
 // ========================== greet user proactively ========================
 $(document).ready(function () {
-
+	console.log("Click")
 	//drop down menu for close, restart conversation & clear the chats.
 	$('.dropdown-trigger').dropdown();
 
 	//initiate the modal for displaying the charts, if you dont have charts, then you comment the below line
-	$('.modal').modal();
+	//$('.modal').modal();
 
 	//enable this if u have configured the bot to start the conversation. 
-	// showBotTyping();
+	//showBotTyping();
 	 //E$("#userInput").prop('disabled', true);
 
 	//global variables
@@ -274,7 +274,9 @@ function setBotResponse(response) {
 }
 
 //====================================== Toggle chatbot =======================================
-$("#profile_div").click(function () {
+$("#imgProfile").click(function () {
+	console.log("Click")
+	$(".profile_div").show();
 	$(".profile_div").toggle();
 	$(".widget").toggle();
 });

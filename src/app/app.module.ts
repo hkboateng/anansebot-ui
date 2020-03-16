@@ -17,6 +17,7 @@ import { DisplayFieldMessagesComponent } from './display-field-messages/display-
 import { ChatbotComponent } from './chatbot/chatbot.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChatbotRasaModule } from 'angular-chat-widget-rasa';
+import { ChatbotdemoComponent } from './chatbotdemo/chatbotdemo.component';
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
@@ -32,6 +33,7 @@ export function tokenGetter() {
     ContactComponent,
     DisplayFieldMessagesComponent,
     ChatbotComponent,
+    ChatbotdemoComponent,
     
   ],
   imports: [

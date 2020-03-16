@@ -6,7 +6,7 @@ body {
 /* ============= css related to chats =============== */
 
 .widget {
-	display: none;
+	/*display: none;*/
 	width: 350px;
 	right: 15px;
 	height: 500px;
